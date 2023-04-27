@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lc.nativelib">
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application android:requestLegacyExternalStorage="true">
+        <service android:name=".service.FloatingService"/>
+        <service
+            android:name=".service.AnrUploadService"
+            android:exported="false" />
+        <service
+            android:name=".service.AnrDisplayService"
+            android:exported="false"
+            android:process=":anr_canary" />
+
+        <activity android:name=".display.AnrDisplayDetailActivity"
+            android:label="@string/anr_content"
+            android:theme="@style/__LeakCanary.Base"
+            />
+        <activity android:name=".display.MonitorDisplayActivity"
+            android:launchMode="singleTop"
+            />
+        <activity
+            android:name=".display.AnrDisplayActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/__leak_canary_icon"
+            android:label="@string/anr_title"
+            android:taskAffinity="com.lc.anr_canary"
+            android:theme="@style/__LeakCanary.Base">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+    </application>
+
+</manifest>

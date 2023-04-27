@@ -1,0 +1,57 @@
+pluginManagement {
+    repositories {
+//        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '6273840c568b073670a5fb84'
+                password ')tGbDBLj1aVz'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2224688-release-eljrow/'
+        }
+        maven {
+            credentials {
+                username '6273840c568b073670a5fb84'
+                password ')tGbDBLj1aVz'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2224688-snapshot-PFCywj/'
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '6273840c568b073670a5fb84'
+                password ')tGbDBLj1aVz'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2224688-release-eljrow/'
+        }
+        maven {
+            credentials {
+                username '6273840c568b073670a5fb84'
+                password ')tGbDBLj1aVz'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2224688-snapshot-PFCywj/'
+        }
+    }
+}
+rootProject.name = "My Application"
+include ':app'
+include ':login'
+include ':mylibrary'
+include ':center'
+include ':repository'
+include ':menu'
+include ':nativelib'
+include ':im'
