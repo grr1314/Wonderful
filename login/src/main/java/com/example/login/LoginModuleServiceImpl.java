@@ -10,7 +10,7 @@ public class LoginModuleServiceImpl implements LoginModuleService {
 
     @Override
     public void attachContext(Context context) {
-        this.context = context;
+        this.context = context.getApplicationContext();
     }
 
     @Override

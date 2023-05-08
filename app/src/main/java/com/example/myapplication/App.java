@@ -12,6 +12,7 @@ import com.lc.nativelib.configs.Config;
 import com.lc.nativelib.configs.AnrConfig;
 import com.lc.nativelib.listener.AnrListener;
 import com.lc.nativelib.model.MessageInfo;
+import com.lc.routerlib.BuildConfig;
 import com.lc.routerlib.IGlobalNavigationCallback;
 import com.lc.routerlib.core.RouteBus;
 import com.lc.routerlib.core.ZRouter;
@@ -70,7 +71,7 @@ public class App extends Application {
                     }
                 })
                 .build();
-        appMonitor.start();
+        appMonitor.startMonitor();
         CenterPlugin.getInstance().init(base);
         CenterPlugin.getInstance().startLoadModulePlugin(ModuleInfoTable.DEFAULT_MODULE_LIST, new PluginRegisterListener() {
             @Override

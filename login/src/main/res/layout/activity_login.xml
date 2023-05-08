@@ -4,16 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello 12World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/ed_userId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="150dp"
+        android:autofillHints="用户id"
+        android:hint="用户id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_target_userId"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="50dp"
+        android:autofillHints="用户id"
+        android:hint="目标用户id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_userId" />
+
+    <Button
+        android:id="@+id/btn_im_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录IM"
+        app:layout_constraintStart_toStartOf="@id/ed_target_userId"
+        app:layout_constraintTop_toBottomOf="@id/ed_target_userId" />
+
+    <Button
+        android:id="@+id/btn_im_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="退出IM"
+        app:layout_constraintEnd_toStartOf="@id/btn_im_chat"
+        app:layout_constraintStart_toEndOf="@+id/btn_im_login"
+        app:layout_constraintTop_toBottomOf="@+id/ed_target_userId" />
+
+    <Button
+        android:id="@+id/btn_im_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="去聊天"
+        app:layout_constraintEnd_toEndOf="@id/ed_userId"
+        app:layout_constraintStart_toEndOf="@+id/btn_im_logout"
+        app:layout_constraintTop_toBottomOf="@+id/ed_target_userId" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

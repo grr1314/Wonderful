@@ -1,5 +1,6 @@
 package com.example.center;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -69,7 +70,7 @@ public class CenterPlugin implements IModulePlugin {
         singleThreadExecutor = getSingleThreadExecutor();
         singleThreadExecutor.execute(() -> {
             for (Map.Entry<String, String> entry : ModuleInfoTable.map.entrySet()) {
-                IModulePlugin iModulePlugin = null;
+                IModulePlugin iModulePlugin;
                 if (iModulePluginConcurrentHashMap.containsKey(entry.getKey()) && iModulePluginConcurrentHashMap.get(entry.getKey()) != null) {
                     iModulePlugin = iModulePluginConcurrentHashMap.get(entry.getKey());
                 } else {
@@ -119,6 +120,7 @@ public class CenterPlugin implements IModulePlugin {
     }
 
     private static class CenterPluginHolder {
+        @SuppressLint("StaticFieldLeak")
         private static final CenterPlugin plugin = new CenterPlugin();
     }
 

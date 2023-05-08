@@ -12,7 +12,12 @@ public class ModuleInfoTable {
     public static final String MODULE_SHARE = "moduleShare";
     public static final String MODULE_MENU = "moduleMenu";
     public static final String MODULE_REPOSITORY = "moduleRepository";
-    public static final List<String> DEFAULT_MODULE_LIST = Arrays.asList(MODULE_REPOSITORY, MODULE_LOGIN, MODULE_SHARE, MODULE_MENU);
+    public static final String MODULE_IM = "moduleIm";
+    public static final List<String> DEFAULT_MODULE_LIST = Arrays.asList(MODULE_REPOSITORY
+            , MODULE_LOGIN
+            , MODULE_SHARE
+            , MODULE_MENU
+            , MODULE_IM);
 
     public static final HashMap<String, String> map = new HashMap<>();
 
@@ -20,6 +25,7 @@ public class ModuleInfoTable {
         map.put(MODULE_REPOSITORY, "com.lc.repository.init.RepositoryPlugin");
         map.put(MODULE_LOGIN, "com.example.login.init.LoginPlugin");
         map.put(MODULE_MENU, "com.lc.menu.init.MenuPlugin");
+        map.put(MODULE_IM, "com.lc.im.init.ImPlugin");
 
     }
 

@@ -10,6 +10,7 @@ import com.lc.nativelib.MonitorQueue;
 import com.lc.nativelib.configs.AnrConfig;
 import com.lc.nativelib.file.FileManager;
 import com.lc.nativelib.listener.AnrListener;
+import com.lc.nativelib.listener.MessageListener;
 import com.lc.nativelib.model.MessageInfo;
 import com.lc.nativelib.model.MessageRecord;
 import com.lc.nativelib.service.AnrDataHandler2;
@@ -18,9 +19,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- *
+ * 监听anr的触发
  */
-public class AnrMonitor implements ISystemAnrObserver, IMonitor {
+public class AnrMonitor implements ISystemAnrObserver, MessageListener {
     private static final String TAG = AnrMonitor.class.getSimpleName();
     private boolean isDebug = true;
     private static final Long DEFAULT_WARNING_TIME = 1000L;
@@ -92,7 +93,7 @@ public class AnrMonitor implements ISystemAnrObserver, IMonitor {
     @Override
     public void startMonitor() {
         monitorState = true;
-        anrDataHandler2 = new AnrDataHandler2(isDebug, anrListener, monitorQueue,Thread.currentThread());
+        anrDataHandler2 = new AnrDataHandler2(isDebug, anrListener, monitorQueue, Thread.currentThread());
     }
 
     @Override
@@ -125,6 +126,16 @@ public class AnrMonitor implements ISystemAnrObserver, IMonitor {
             recordEnd();
         }
         odd.set(!odd.get());
+    }
+
+    @Override
+    public void dispatchMessageStart(String x) {
+        recordStart(x);
+    }
+
+    @Override
+    public void dispatchMessageEnd() {
+        recordEnd();
     }
 
     @Override

@@ -260,6 +260,7 @@ class MainActivity : AppCompatActivity() {
         mData.add(HomeItemData("BookManagerActivity", BookManagerActivity::class.java))
         mData.add(HomeItemData("ViewActivity", ViewActivity::class.java))
         mData.add(HomeItemData("MenuCateActivity", ViewActivity::class.java))
+        mData.add(HomeItemData("LoginActivity", ViewActivity::class.java))
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.setRecycledViewPool(object : RecyclerView.RecycledViewPool() {
@@ -281,11 +282,20 @@ class MainActivity : AppCompatActivity() {
 //                adapter.notifyItemMoved()
 //                adapter.notifyItemRangeChanged(position)
                 if (mData[position].itemName == "MenuCateActivity") {
-                    ZRouter.newInstance().setPageName("cateInfo").setAction("jump")
+                    ZRouter.newInstance()
+                        .setPageName("cateInfo")
+                        .setAction("jump")
                         .setTradeLine("menu")
                         .navigation(this@MainActivity)
+                } else if (mData[position].itemName == "LoginActivity") {
+                    ZRouter.newInstance()
+                        .setPageName("login")
+                        .setAction("jump")
+                        .setTradeLine("login")
+                        .navigation(this@MainActivity)
+
                 } else
-                    startActivity(Intent(view?.context, mData[position].clazz))
+                startActivity(Intent(view?.context, mData[position].clazz))
             }
         })
 //        adapter.notifyDataSetChanged()
