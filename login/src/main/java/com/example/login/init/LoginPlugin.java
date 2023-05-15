@@ -21,4 +21,19 @@ public class LoginPlugin extends BaseModulePlugin {
         pluginRegisterListener.onSuccess();
     }
 
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
+
 }

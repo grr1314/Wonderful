@@ -6,5 +6,12 @@ import java.util.List;
 
 public interface IModulePlugin {
     void init(Context context, String pluginName, PluginRegisterListener pluginRegisterListener);
-    void startLoadModulePlugin(List<String> modules,PluginRegisterListener pluginRegisterListener);
+
+    void startLoadModulePlugin(List<String> modules, PluginRegisterListener pluginRegisterListener, boolean async);
+
+    void onResume();
+
+    void onStop();
+
+    void onDestroy();
 }

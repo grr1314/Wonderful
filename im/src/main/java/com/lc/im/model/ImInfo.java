@@ -2,6 +2,8 @@ package com.lc.im.model;
 
 import androidx.room.Entity;
 
+import com.hyphenate.chat.EMMessage;
+
 import io.agora.rtm.RtmMessage;
 
 /**
@@ -11,6 +13,8 @@ import io.agora.rtm.RtmMessage;
 @Entity(tableName = "rtm_info_unread_list_table")
 public class ImInfo {
     private RtmMessage target;
+
+    private EMMessage emMessage;
     public ImInfo next;
     private int source;//
 
@@ -28,11 +32,39 @@ public class ImInfo {
 
     private byte[] rawMessage;
 
+    private int cacheMessageId;
+
+    private boolean isSelf = false;
+
+    public boolean isSelf() {
+        return isSelf;
+    }
+
+    public void setSelf(boolean self) {
+        isSelf = self;
+    }
+
+    public int getCacheMessageId() {
+        return cacheMessageId;
+    }
+
+    public void setCacheMessageId(int cacheMessageId) {
+        this.cacheMessageId = cacheMessageId;
+    }
+
     public ImInfo(RtmMessage target, int source, String peerId, String userId) {
         this.target = target;
         this.source = source;
         this.peerId = peerId;
         this.userId = userId;
+    }
+
+    public void setEmMessage(EMMessage emMessage) {
+        this.emMessage = emMessage;
+    }
+
+    public EMMessage getEmMessage() {
+        return emMessage;
     }
 
     public String getText() {
@@ -106,4 +138,8 @@ public class ImInfo {
     public void setPeerId(String peerId) {
         this.peerId = peerId;
     }
+
+//    public boolean isSelf() {
+//        return peerId.equals(userId);
+//    }
 }

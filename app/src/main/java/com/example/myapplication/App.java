@@ -16,6 +16,7 @@ import com.lc.routerlib.BuildConfig;
 import com.lc.routerlib.IGlobalNavigationCallback;
 import com.lc.routerlib.core.RouteBus;
 import com.lc.routerlib.core.ZRouter;
+import com.tencent.mmkv.MMKV;
 
 import java.io.File;
 import java.util.ArrayDeque;
@@ -24,6 +25,7 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        MMKV.initialize(this);
         ZRouter.init(base);
         ZRouter.setGlobalListener(new IGlobalNavigationCallback() {
             @Override
@@ -50,27 +52,22 @@ public class App extends Application {
         anrConfig.setWarningTime(200);
         Config config = new Config();
         config.add(anrConfig);
-        AppMonitor appMonitor = new AppMonitor.Builder()
-                .with(base)
-                .addConfig(config)
-                .isDebug(BuildConfig.DEBUG)
-                .addAnrListener(new AnrListener() {
-                    @Override
-                    public void singleWarningMessage(MessageInfo info) {
-                        Log.w("AppMonitor", info.toString());
-                    }
+        AppMonitor appMonitor = new AppMonitor.Builder().with(base).addConfig(config).isDebug(BuildConfig.DEBUG).addAnrListener(new AnrListener() {
+            @Override
+            public void singleWarningMessage(MessageInfo info) {
+                Log.w("AppMonitor", info.toString());
+            }
 
-                    @Override
-                    public void anrEvent(ArrayDeque<MessageInfo> arrayDeque) {
-                        Log.w("AppMonitor", "anrEvent:"+arrayDeque.size() + "");
-                    }
+            @Override
+            public void anrEvent(ArrayDeque<MessageInfo> arrayDeque) {
+                Log.w("AppMonitor", "anrEvent:" + arrayDeque.size() + "");
+            }
 
-                    @Override
-                    public void uploadAnrFile(File anrFile) {
-                        Log.w("AppMonitor", "uploadAnrFile:"+anrFile.getAbsolutePath() + "");
-                    }
-                })
-                .build();
+            @Override
+            public void uploadAnrFile(File anrFile) {
+                Log.w("AppMonitor", "uploadAnrFile:" + anrFile.getAbsolutePath() + "");
+            }
+        }).build();
         appMonitor.startMonitor();
         CenterPlugin.getInstance().init(base);
         CenterPlugin.getInstance().startLoadModulePlugin(ModuleInfoTable.DEFAULT_MODULE_LIST, new PluginRegisterListener() {
@@ -83,6 +80,6 @@ public class App extends Application {
             public void onFail(String pluginName) {
 
             }
-        });
+        }, false);
     }
 }

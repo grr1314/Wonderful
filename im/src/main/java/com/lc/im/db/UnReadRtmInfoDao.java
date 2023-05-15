@@ -5,7 +5,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.lc.im.model.ImInfo;
 import com.lc.im.model.UnReadImInfo;
 
 import java.util.List;
@@ -25,6 +24,8 @@ interface UnReadRtmInfoDao {
     @Delete
     public void delete(UnReadImInfo... imInfos);
 
+    @Query("DELETE FROM rtm_info_unread_list_table WHERE id = :msgId")
+    public void deleteById(int msgId);
 
 
     //不设置条件，查询所有数据

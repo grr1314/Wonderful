@@ -24,6 +24,21 @@ public class RepositoryPlugin extends BaseModulePlugin {
         pluginRegisterListener.onSuccess();
     }
 
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
+
     private static class RepositoryModuleServiceImpl implements RepositoryModuleService {
         Context context;
 

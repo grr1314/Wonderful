@@ -36,8 +36,8 @@ class LoginActivity : AppCompatActivity(), ImListener {
         imModuleService?.addImListener(this)
         loginBtn.setOnClickListener {
             val tokenString =
-                if (editText.text.toString() == "123456") "007eJxTYGA1rlbbUXc1UHzuOg2ddOcpG25877n4a3FXmOSs/7f1pv9SYDBJM7dINU1OMzRMNjOxNDFIsjRITTUxMzQzNEpKSTI0c7CLSGkIZGSYvj+flZGBiYERCEF8NgZDI2MTUzMAcWwfhw=="
-                else "007eJxTYGAvS1rb5HLwhV909P5d55N2iCd9eS/K9HuPlEekR/3fpCgFBpM0c4tU0+Q0Q8NkMxNLE4MkS4PUVBMzQzNDo6SUJEOzDLuIlIZARoYJFwpYGBmYGBiBEMRnZzA0MjYxNTMHAGPVHuk="
+                if (editText.text.toString() == "123456") "007eJxTYPj+lLNSuVtEQUhhi7Zih+qybRczO+fNUmu+0c3ivefG2fsKDCZp5happslphobJZiaWJgZJlgapqSZmhmaGRkkpSYZmNgWRKQ2BjAwdBc6sjAxMDIxACOKzMRgaGZuYmgEA5Kwdbw=="
+                else "007eJxTYDh14fkOJQMJ+19Kc632MWR3XsyQN3u3WGG3VCjXqnUWn9IUGEzSzC1STZPTDA2TzUwsTQySLA1SU03MDM0MjZJSkgzNkgsiUxoCGRnqGt6wMDIwMTACIYjPzmBoZGxiamYOAClGHk0="
 
             imModuleService?.imLogin(
                 tokenString, editText.text.toString()

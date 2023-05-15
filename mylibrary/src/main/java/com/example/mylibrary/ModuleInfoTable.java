@@ -13,6 +13,7 @@ public class ModuleInfoTable {
     public static final String MODULE_MENU = "moduleMenu";
     public static final String MODULE_REPOSITORY = "moduleRepository";
     public static final String MODULE_IM = "moduleIm";
+    public static final String MODULE_CENTER = "moduleCenter";
     public static final List<String> DEFAULT_MODULE_LIST = Arrays.asList(MODULE_REPOSITORY
             , MODULE_LOGIN
             , MODULE_SHARE

@@ -8,6 +8,9 @@ import android.util.Log;
 
 import com.example.mylibrary.callback.ImListener;
 import com.example.mylibrary.service.ImModuleService;
+import com.lc.im.agora.AgoraMessageCentralStation;
+import com.lc.im.agora.AgoraImClient;
+import com.tencent.mmkv.MMKV;
 
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
@@ -18,6 +21,8 @@ import io.agora.rtm.ResultCallback;
  */
 public class ImModuleServiceImpl implements ImModuleService {
     private Context context;
+
+    MMKV kv = MMKV.defaultMMKV();
 
     @Override
     public void attachContext(Context context) {
@@ -31,25 +36,28 @@ public class ImModuleServiceImpl implements ImModuleService {
 
     @Override
     public boolean imLoginState() {
-        final ImRtmClient imRtmClient = ImRtmClient.INSTANCE;
+        final AgoraImClient imRtmClient = AgoraImClient.INSTANCE;
         int state = imRtmClient.getCurrentState();
         return state == CONNECTION_STATE_CONNECTED || state == CONNECTION_STATE_RECONNECTING;
     }
 
     @Override
     public void imLogin(String token, String userId) {
-        final ImRtmClient imRtmClient = ImRtmClient.INSTANCE;
+        final AgoraImClient imRtmClient = AgoraImClient.INSTANCE;
         Log.w("ImModuleServiceImpl", " userId= " + userId);
 
         imRtmClient.login(token, userId, new ResultCallback<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.w("ImModuleServiceImpl", "im login success");
-                RtmMessageCentralStation rtmMessageCentralStation = imRtmClient.getRtmMessageCentralStation();
-                if (rtmMessageCentralStation != null) {
-                    rtmMessageCentralStation.start();
-                    rtmMessageCentralStation.setSelfUserId(userId);
+                AgoraMessageCentralStation agoraMessageCentralStation = imRtmClient.getAgoraMessageCentralStation();
+                if (agoraMessageCentralStation != null) {
+                    agoraMessageCentralStation.start();
+                    agoraMessageCentralStation.setSelfUserId(userId);
                 }
+                kv.encode("imLoginState", true);
+                kv.encode("userId", userId);
+                kv.encode("token", token);
             }
 
             @Override
@@ -61,17 +69,19 @@ public class ImModuleServiceImpl implements ImModuleService {
 
     @Override
     public void imLogout() {
-        final ImRtmClient imRtmClient = ImRtmClient.INSTANCE;
+        final AgoraImClient imRtmClient = AgoraImClient.INSTANCE;
 
         imRtmClient.logout(new ResultCallback<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Log.w("ImModuleServiceImpl", "im logout success");
-                RtmMessageCentralStation rtmMessageCentralStation = imRtmClient.getRtmMessageCentralStation();
-                if (rtmMessageCentralStation != null) {
-                    rtmMessageCentralStation.stop();
-                    rtmMessageCentralStation.setSelfUserId(null);
+                AgoraMessageCentralStation agoraMessageCentralStation = imRtmClient.getAgoraMessageCentralStation();
+                if (agoraMessageCentralStation != null) {
+                    agoraMessageCentralStation.stop();
+                    agoraMessageCentralStation.setSelfUserId(null);
                 }
+                kv.encode("imLoginState", false);
+
             }
 
             @Override
@@ -88,13 +98,13 @@ public class ImModuleServiceImpl implements ImModuleService {
 
     @Override
     public void addImListener(ImListener imListener) {
-        final ImRtmClient imRtmClient = ImRtmClient.INSTANCE;
+        final AgoraImClient imRtmClient = AgoraImClient.INSTANCE;
         imRtmClient.addListener(imListener);
     }
 
     @Override
     public void removeImListener(ImListener imListener) {
-        final ImRtmClient imRtmClient = ImRtmClient.INSTANCE;
+        final AgoraImClient imRtmClient = AgoraImClient.INSTANCE;
         imRtmClient.removeListener(imListener);
     }
 

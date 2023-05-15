@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tag_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册模块"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/tv_register_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tag_register" />
+
+        <EditText
+            android:id="@+id/tv_register_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_account" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="注册"
+            app:layout_constraintStart_toStartOf="@id/tv_register_pwd"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_pwd" />
+
+        <TextView
+            android:id="@+id/tag_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="登录模块"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_register" />
+
+        <EditText
+            android:id="@+id/tv_login_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tag_login" />
+
+        <EditText
+            android:id="@+id/tv_login_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_account" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="登录"
+            app:layout_constraintStart_toStartOf="@id/tv_login_pwd"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_pwd" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="退出"
+            app:layout_constraintStart_toEndOf="@id/btn_login"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_pwd" />
+
+
+        <TextView
+            android:id="@+id/tv_login_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_login" />
+
+        <TextView
+            android:id="@+id/tag_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="好友模块"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login_state" />
+
+        <EditText
+            android:id="@+id/ed_friend_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/app_name"
+            app:layout_constraintEnd_toStartOf="@id/btn_add"
+            app:layout_constraintStart_toStartOf="@id/tag_friend"
+            app:layout_constraintTop_toBottomOf="@id/tag_friend" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_friend_name" />
+
+        <TextView
+            android:id="@+id/tv_friend_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_add" />
+
+        <TextView
+            android:id="@+id/tag_contact_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="好友申请"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_friend_list" />
+
+        <TextView
+            android:id="@+id/tv_friend_who"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tag_contact_apply" />
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接受"
+            app:layout_constraintStart_toStartOf="@id/tv_friend_who"
+            app:layout_constraintTop_toBottomOf="@id/tv_friend_who" />
+
+        <Button
+            android:id="@+id/btn_reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拒绝"
+            app:layout_constraintStart_toEndOf="@id/btn_accept"
+            app:layout_constraintTop_toBottomOf="@id/tv_friend_who" />
+
+
+        <TextView
+            android:id="@+id/tag_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="消息模块"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_accept" />
+
+        <EditText
+            android:id="@+id/ed_to_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="目标用户"
+            app:layout_constraintStart_toStartOf="@id/tag_send"
+            app:layout_constraintTop_toBottomOf="@id/tag_send" />
+
+        <EditText
+            android:id="@+id/ed_msg_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="内容"
+            app:layout_constraintStart_toStartOf="@id/tag_send"
+            app:layout_constraintTop_toBottomOf="@id/ed_to_user" />
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            app:layout_constraintStart_toStartOf="@id/tag_send"
+            app:layout_constraintTop_toBottomOf="@id/ed_msg_content" />
+
+        <Button
+            android:id="@+id/btn_conversation_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="会话列表"
+            app:layout_constraintStart_toEndOf="@id/btn_send"
+            app:layout_constraintTop_toBottomOf="@id/ed_msg_content" />
+
+        <TextView
+            android:id="@+id/tag_user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="用户信息模块"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_conversation_list" />
+
+        <TextView
+            android:id="@+id/tv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tag_user_info" />
+
+        <EditText
+            android:id="@+id/ed_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="nickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_user" />
+
+        <EditText
+            android:id="@+id/ed_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="sign"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_nickname" />
+
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_sign" />
+
+        <ImageView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_change" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

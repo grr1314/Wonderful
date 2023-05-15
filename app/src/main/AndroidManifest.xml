@@ -34,14 +34,15 @@
         <activity android:name=".activity.ViewActivity"/>
 
         <provider
-            android:process=":pro"
+
             android:name=".provider.DataProvider"
             android:authorities="com.lc.provider.myapplication"
             android:exported="true" />
         <service
             android:exported="true"
             android:name=".service.BookManagerService"
-            android:process=":remote"/>
+
+            />
         <service
             android:name="com.lc.nativelib.AnrDisplayService"
             android:enabled="false" />

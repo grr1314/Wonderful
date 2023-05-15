@@ -10,4 +10,19 @@ public class MenuPlugin extends BaseModulePlugin {
     public void init(Context context, String pluginName, PluginRegisterListener pluginRegisterListener) {
 
     }
+
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }

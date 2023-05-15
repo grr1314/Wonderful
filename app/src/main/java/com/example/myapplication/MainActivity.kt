@@ -261,6 +261,7 @@ class MainActivity : AppCompatActivity() {
         mData.add(HomeItemData("ViewActivity", ViewActivity::class.java))
         mData.add(HomeItemData("MenuCateActivity", ViewActivity::class.java))
         mData.add(HomeItemData("LoginActivity", ViewActivity::class.java))
+        mData.add(HomeItemData("HyDemoActivity", ViewActivity::class.java))
 
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.setRecycledViewPool(object : RecyclerView.RecycledViewPool() {
@@ -282,20 +283,16 @@ class MainActivity : AppCompatActivity() {
 //                adapter.notifyItemMoved()
 //                adapter.notifyItemRangeChanged(position)
                 if (mData[position].itemName == "MenuCateActivity") {
-                    ZRouter.newInstance()
-                        .setPageName("cateInfo")
-                        .setAction("jump")
-                        .setTradeLine("menu")
-                        .navigation(this@MainActivity)
+                    ZRouter.newInstance().setPageName("cateInfo").setAction("jump")
+                        .setTradeLine("menu").navigation(this@MainActivity)
                 } else if (mData[position].itemName == "LoginActivity") {
-                    ZRouter.newInstance()
-                        .setPageName("login")
-                        .setAction("jump")
-                        .setTradeLine("login")
-                        .navigation(this@MainActivity)
+                    ZRouter.newInstance().setPageName("login").setAction("jump")
+                        .setTradeLine("login").navigation(this@MainActivity)
 
-                } else
-                startActivity(Intent(view?.context, mData[position].clazz))
+                } else if (mData[position].itemName == "HyDemoActivity") {
+                    ZRouter.newInstance().setPageName("hy_demo").setAction("jump")
+                        .setTradeLine("im").navigation(this@MainActivity)
+                } else startActivity(Intent(view?.context, mData[position].clazz))
             }
         })
 //        adapter.notifyDataSetChanged()
