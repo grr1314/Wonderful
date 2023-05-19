@@ -8,6 +8,7 @@
     >
 
     <ImageView
+        android:scaleType="centerCrop"
         android:visibility="gone"
         android:id="@+id/iv_user_icon_left"
         android:layout_width="48dp"
@@ -32,6 +33,7 @@
         android:id="@+id/iv_user_icon_right"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

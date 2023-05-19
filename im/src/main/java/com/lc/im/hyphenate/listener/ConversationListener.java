@@ -1,5 +1,7 @@
 package com.lc.im.hyphenate.listener;
 
+import com.lc.im.model.HyConversationInfo;
+
 import java.util.List;
 
 /**
@@ -10,4 +12,6 @@ public interface ConversationListener<T> {
     public void startLoad();
 
     public void loadSuccess(List<T> tList);
+
+    public void newConversation(HyConversationInfo hyConversationInfo);
 }

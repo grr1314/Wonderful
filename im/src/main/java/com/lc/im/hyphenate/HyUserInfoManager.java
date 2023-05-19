@@ -28,13 +28,6 @@ public class HyUserInfoManager extends UserInfoManager<EMUserInfo> {
     @Override
     public void setUserInfo(EMUserInfo emUserInfo, UserInfoListener<EMUserInfo> listener) {
         emUserInfo.setUserId(EMClient.getInstance().getCurrentUser());
-//        emUserInfo.setNickname("easemob");
-//        emUserInfo.setAvatarUrl("https://www.easemob.com");
-//        emUserInfo.setBirth("2000.10.10");
-//        emUserInfo.setSignature("hello world");
-//        emUserInfo.setPhoneNumber("13333333333");
-//        emUserInfo.setEmail("123456@qq.com");
-//        emUserInfo.setGender(1);
         EMClient.getInstance().userInfoManager().updateOwnInfo(emUserInfo, new EMValueCallBack<String>() {
             @Override
             public void onSuccess(String value) {
@@ -201,7 +194,7 @@ public class HyUserInfoManager extends UserInfoManager<EMUserInfo> {
     }
 
     @Override
-    public void getAllUserInfo(String[] userIds, UserInfoManager.UserInfoListener listener) {
+    public void getAllUserInfo(String[] userIds, UserInfoManager.UserInfoListener<EMUserInfo> listener) {
         EMClient.getInstance().userInfoManager().fetchUserInfoByUserId(userIds, new EMValueCallBack<Map<String, EMUserInfo>>() {
 
             @Override

@@ -1,5 +1,6 @@
 package com.lc.im.hyphenate.adapter;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMMessageBody;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.lc.im.R;
+import com.lc.im.Util;
 import com.lc.im.model.HyConversationInfo;
 
 import java.util.ArrayList;
@@ -43,9 +45,9 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationHolder
     public void onBindViewHolder(@NonNull ConversationHolder holder, int position) {
 
         HyConversationInfo hyConversationInfo = conversationList.get(position);
-        holder.lastMsg.setText(hyConversationInfo.getLastMsgContent());
+        holder.lastMsg.setText(Util.parseHyMessageTxt(hyConversationInfo.getLastMsgContent()));
         holder.tvNickName.setText(hyConversationInfo.getNickName());
-        holder.tvUnReadCount.setText(hyConversationInfo.getUnReadCount());
+        holder.tvUnReadCount.setText(hyConversationInfo.getUnReadCount()+"");
         Glide.with(holder.itemView.getContext()).load(hyConversationInfo.getEmUserInfo().getAvatarUrl()).into(holder.ivUserIcon);
         holder.itemView.setOnClickListener(view -> {
             if (conversationItemClick != null) {
@@ -59,12 +61,14 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationHolder
         return conversationList.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setData(List<HyConversationInfo> conversationList) {
         if (this.conversationList == null) {
             this.conversationList = new ArrayList<>();
         }
         this.conversationList.clear();
         this.conversationList.addAll(conversationList);
+        notifyDataSetChanged();
     }
 
     public void addData(HyConversationInfo conversation) {

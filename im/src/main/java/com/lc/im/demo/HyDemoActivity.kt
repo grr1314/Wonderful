@@ -20,6 +20,7 @@ import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMUserInfo
 import com.lc.im.GlideEngine
+import com.lc.im.OssManager
 import com.lc.im.R
 import com.lc.im.Source
 import com.lc.im.UserInfoManager
@@ -88,11 +89,11 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
         send()
         friendList()
         user()
-
     }
 
     private fun user() {
-        HyImClient.hyUserInfoManager?.getSingleUserInfo(EMClient.getInstance().currentUser,
+        HyImClient.hyUserInfoManager?.getSingleUserInfo(
+            EMClient.getInstance().currentUser,
             object : UserInfoManager.UserInfoListener<EMUserInfo> {
                 override fun getAllUserInfo(uinfos: MutableList<EMUserInfo>?) {
                 }
@@ -110,7 +111,9 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
                 override fun onError(error: String?) {
                 }
 
-            },false)
+            },
+            false
+        )
         mImageList = ArrayList()
         ivUserIcon.setOnClickListener {
             PictureSelector.create(this).openGallery(SelectMimeType.ofImage())
@@ -140,13 +143,19 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
                     override fun onError(error: String?) {
                     }
                 })
-            var file = mImageList!![0]
-            var url = ""
-            if (file != null) {
-                url = file.absolutePath;
+            if (mImageList!!.size > 0) {
+                val file = mImageList!![0]
+                var url = ""
+                if (file != null) {
+                    url = file.absolutePath;
+                }
             }
-            HyImClient.hyUserInfoManager?.setUserIcon(
-                url,
+//            val ossManager = OssManager()
+//            ossManager.init(this)
+//            ossManager.upload(url, "11")
+            val iconUrl =
+                "https://pic1.zhimg.com/7dee082d74f641b7b20f8a203a4d5de4_1440w.jpg?source=172ae18b"
+            HyImClient.hyUserInfoManager?.setUserIcon(iconUrl,
                 object : UserInfoManager.UserInfoListener<EMUserInfo> {
                     override fun getAllUserInfo(uinfos: MutableList<EMUserInfo>?) {
                     }
@@ -171,8 +180,7 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
 
     private fun send() {
         sendBtn.setOnClickListener {
-            HyImClient.sendMessage(
-                "",
+            HyImClient.sendMessage("",
                 edContent.text.toString(),
                 edToUser.text.toString(),
                 object : EMCallBack {
@@ -249,17 +257,40 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
             })
         }
         loginBtn.setOnClickListener {
-            HyImClient.login(
-                edLoginAccount.text.toString(),
+            HyImClient.login(edLoginAccount.text.toString(),
                 edLoginPwd.text.toString(),
                 object : EMCallBack {
                     override fun onSuccess() {
                         kv.encode("userId", edLoginAccount.text.toString())
                         val hyphenateMessageCentralStation: HyphenateMessageCentralStation? =
                             HyImClient.hyphenateMessageCentralStation
-
                         hyphenateMessageCentralStation?.start()
                         hyphenateMessageCentralStation?.setSelfUserId(edLoginAccount.text.toString())
+                        //获取当前用户信息
+                        HyImClient.hyUserInfoManager?.getSingleUserInfo(
+                            edLoginAccount.text.toString(),
+                            object : UserInfoManager.UserInfoListener<EMUserInfo> {
+                                override fun getAllUserInfo(uinfos: MutableList<EMUserInfo>?) {
+
+                                }
+
+                                override fun getSingleUserInfo(t: EMUserInfo?) {
+                                    edNickName.setText(t?.nickname)
+                                    edSign.setText(t?.signature)
+                                }
+
+                                override fun setSingleInfoSuccess(type: String?) {
+                                }
+
+                                override fun setUserInfoSuccess(success: String?) {
+                                }
+
+                                override fun onError(error: String?) {
+                                }
+
+                            },
+                            false
+                        )
                         Log.w(
                             "HyDemoActivity", "登录成功"
                         )
@@ -329,9 +360,9 @@ public class HyDemoActivity : BaseActivity(), EMContactListener, EMMessageListen
                     "HyDemoActivity",
                     "消息接收成功" + "\n" + "from:" + msg.from + "\n" + "内容：" + msg.body?.describeContents()
                 )
+
             }
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

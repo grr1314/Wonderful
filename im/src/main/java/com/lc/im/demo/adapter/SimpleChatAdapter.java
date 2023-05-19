@@ -14,6 +14,7 @@ import com.hyphenate.chat.EMUserInfo;
 import com.lc.im.R;
 import com.lc.im.MessageType;
 import com.lc.im.UserInfoManager;
+import com.lc.im.Util;
 import com.lc.im.hyphenate.HyImClient;
 import com.lc.im.model.ImInfo;
 
@@ -100,14 +101,14 @@ public class SimpleChatAdapter extends RecyclerView.Adapter<SimpleChatAdapter.Si
             holder.textLeft.setText("");
             holder.imageLeft.setVisibility(View.GONE);
             holder.textRight.setVisibility(View.VISIBLE);
-            holder.textRight.setText(contentText);
+            holder.textRight.setText(Util.parseHyMessageTxt(contentText));
             holder.imageRight.setVisibility(View.VISIBLE);
         } else {
             holder.textRight.setVisibility(View.GONE);
             holder.textRight.setText("");
             holder.imageRight.setVisibility(View.GONE);
             holder.textLeft.setVisibility(View.VISIBLE);
-            holder.textLeft.setText(contentText);
+            holder.textLeft.setText(Util.parseHyMessageTxt(contentText));
             holder.imageLeft.setVisibility(View.VISIBLE);
         }
     }
